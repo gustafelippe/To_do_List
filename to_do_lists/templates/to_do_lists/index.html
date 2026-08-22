@@ -2,8 +2,29 @@
 
 {% block content %}
 
-{{ teste }}
-{{ Outro_Teste }}
-{{ Mais_um_teste }}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+
+<form method="post" class="shadow p-3 mt-3 col-12 col-md-4">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="id_tarefa" class="form-label">Tarefa</label>
+        {{ form.tarefa }}
+    </div>
+
+    <button type="submit" class="form-control btn btn-primary">Cadastrar</button>
+
+</form>
+
+</div>
+
+{% else %}
+
+    <a href="#"><p class='text-center mt-3'>Clique aqui para se cadastrar e começar as tarefas</p></a>
+
+{%endif%}
 
 {% endblock %}
