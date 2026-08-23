@@ -7,23 +7,61 @@
 
 <div class="row">
 
-<form method="post" class="shadow p-3 mt-3 col-12 col-md-4">
-    {% csrf_token %}
+    <form method="post" class="shadow p-3 mt-3 col-12 col-md-4">
+        {% csrf_token %}
 
-    <div class="mb-3">
-        <label for="id_tarefa" class="form-label">Tarefa</label>
-        {{ form.tarefa }}
+        <div class="mb-3">
+            <label for="id_tarefa" class="form-label">Tarefa</label>
+            {{ form.tarefa }}
+        </div>
+
+        <button type="submit" class="form-control btn btn-primary">Cadastrar</button>
+
+    </form>
+
+    <div class="mt-3 p-4 col-12 col-md-8">
+        <div class="p-3 mt-3 col-12">
+            
+            <h2>Tarefas</h2>
+            {% if tarefas_nao_concluidas %}
+
+                {% for tarefa in tarefas_nao_concluidas %}
+                    <div class="input-group mb-3 col-12">
+                        <span class="input-group-text col-8" id="basic-addon1">{{ tarefa }}</span>
+                        <a href="#" class="btn btn-primary col-2">Concluir</a>
+                        <a href="#" class="btn btn-danger col-2">Excluir</a>
+
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <p>Não há tarefas cadastradas.</p>
+            {% endif %}
+
+        </div>
+        <div class="p-3 mt-3 col-12">
+            <h2>Tarefas Concluídas</h2>
+            {% if tarefas_concluidas %}
+
+                {% for tarefa in tarefas_concluidas %}
+                <div class="mb-3 col-12 text-bg-info p-3">
+                    <span class="input-group-text col-8" >{{ tarefa }}</span>
+                </div>
+                {% endfor %}
+
+            {% else %}
+                <p>Não há tarefas concluídas.</p>
+            {% endif %}
+        </div>
     </div>
-
-    <button type="submit" class="form-control btn btn-primary">Cadastrar</button>
-
-</form>
 
 </div>
 
 {% else %}
 
-    <a href="#"><p class='text-center mt-3'>Clique aqui para se cadastrar e começar as tarefas</p></a>
+<a href="#">
+    <p class='text-center mt-3'>Clique aqui para se cadastrar e começar as tarefas</p>
+</a>
 
 {%endif%}
 
