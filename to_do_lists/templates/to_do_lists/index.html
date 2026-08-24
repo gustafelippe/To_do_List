@@ -10,6 +10,14 @@
     <form method="post" class="shadow p-3 mt-3 col-12 col-md-4">
         {% csrf_token %}
 
+        {% if form.errors %}
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <span class="text-danger">* {{ error }}</span>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
         <div class="mb-3">
             <label for="id_tarefa" class="form-label">Tarefa</label>
             {{ form.tarefa }}
@@ -28,8 +36,8 @@
                 {% for tarefa in tarefas_nao_concluidas %}
                     <div class="input-group mb-3 col-12">
                         <span class="input-group-text col-8" id="basic-addon1">{{ tarefa }}</span>
-                        <a href="#" class="btn btn-primary col-2">Concluir</a>
-                        <a href="#" class="btn btn-danger col-2">Excluir</a>
+                        <a class="btn btn-primary col-2" href="{% url 'concluir' tarefa_id=tarefa.id %}">Concluir</a>
+                        <a class="btn btn-danger col-2" href="{% url 'excluir' tarefa_id=tarefa.id %}">Excluir</a>
 
                     </div>
                 {% endfor %}
@@ -45,7 +53,7 @@
 
                 {% for tarefa in tarefas_concluidas %}
                 <div class="mb-3 col-12 text-bg-info p-3">
-                    <span class="input-group-text col-8" >{{ tarefa }}</span>
+                    <span class="input-group-text col-8" >{{ tarefa.tarefa }}</span>
                 </div>
                 {% endfor %}
 
