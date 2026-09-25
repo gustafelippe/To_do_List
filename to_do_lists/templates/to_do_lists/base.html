@@ -33,21 +33,21 @@
                         {% if user.is_authenticated %}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Alterar senha</a>
+                            <a class="nav-link" href="{% url 'reset_pass' %}">Alterar senha</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Sair</a>
+                            <a class="nav-link" href="{% url 'logout_page' %}">Sair</a>
                         </li>
 
                         {% else %}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Registrar</a>
+                            <a class="nav-link" href="{% url 'register' %}">Registrar</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Entrar</a>
+                            <a class="nav-link" href="{% url 'login_page' %}">Entrar</a>
                         </li>
 
                         {% endif %}

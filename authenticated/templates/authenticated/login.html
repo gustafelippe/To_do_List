@@ -1,0 +1,35 @@
+{% extends "to_do_lists/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row col-12 justify-content-center">
+        <form method="post" class="shadow p-3 mt-5 col-12 col-md-8 col-lg-4">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <span class="text-danger">* {{ error }}</span></br>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <div class="mb-3">
+                <label for="id_login_username" class="form-label">Login</label>
+                {{ form.username }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_login_password" class="form-label">Senha</label>
+                {{ form.password }}
+            </div>
+            
+            <button type="submit" class="form-control btn btn-primary">Entrar</button>
+
+        </form>
+    </div>
+</div>
+<div class="mt-5 text-center">
+</div>
+
+{% endblock %}

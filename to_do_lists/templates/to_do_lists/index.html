@@ -13,7 +13,7 @@
         {% if form.errors %}
             {% for field, errors in form.errors.items %}
                 {% for error in errors %}
-                    <span class="text-danger">* {{ error }}</span>
+                    <span class="text-danger">* {{ error }}</span></br>
                 {% endfor %}
             {% endfor %}
         {% endif %}
@@ -67,7 +67,7 @@
 
 {% else %}
 
-<a href="#">
+<a href="{% url 'register' %}">
     <p class='text-center mt-3'>Clique aqui para se cadastrar e começar as tarefas</p>
 </a>
 
